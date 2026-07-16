@@ -1,0 +1,391 @@
+/* ==========================================
+   VARIABLES DE DISEÑO Y PALETA DE COLORES
+   ========================================== */
+:root {
+    --primary-color: #6366f1;       /* Morado Eléctrico/Indigo moderno */
+    --primary-dark: #4f46e5;        /* Morado un poco más oscuro para Hovers */
+    --primary-light: #e0e7ff;       /* Lila muy suave para enfoques */
+    --bg-white: #ffffff;
+    --bg-light: #faf9ff;            /* Lila extremadamente claro para fondo */
+    --text-dark: #1e1b4b;           /* Morado oscuro/azul oscuro para títulos */
+    --text-muted: #64748b;          /* Gris neutro para subtítulos y placeholders */
+    --border-color: #e2e8f0;        /* Gris suave para bordes */
+    --font-family: 'Plus Jakarta Sans', sans-serif;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   LAYOUT PRINCIPAL (Pantalla Dividida)
+   ========================================== */
+.login-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ------------------------------------------
+   COLUMNA IZQUIERDA (Formulario)
+   ------------------------------------------ */
+.login-form-section {
+    width: 45%;
+    background-color: var(--bg-white);
+    padding: 2.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.02);
+}
+
+/* Logo de la Marca */
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-svg .hexagon {
+    fill: var(--primary-color);
+}
+
+.logo-svg .brain-lines {
+    stroke: var(--bg-white);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.brand-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-dark);
+}
+
+.brand-accent {
+    color: var(--primary-color);
+}
+
+/* Envoltura del Formulario */
+.form-wrapper {
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+}
+
+.form-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    letter-spacing: -1px;
+}
+
+.form-header p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+/* Estructura del Formulario */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-link, .register-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.forgot-link:hover, .register-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Estilo de los Inputs */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-light);
+    transition: var(--transition-smooth);
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--primary-color);
+    background-color: var(--bg-white);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.input-icon {
+    margin-right: 0.75rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.input-wrapper input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.input-wrapper input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Botón Principal */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    border: none;
+    padding: 0.85rem;
+    border-radius: 10px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Divisor */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.divider:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: .5em;
+}
+
+/* Botón Google */
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: var(--bg-white);
+    border: 1.5px solid var(--border-color);
+    color: var(--text-dark);
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.btn-google:hover {
+    background-color: var(--bg-light);
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Footer Sección de Login */
+.form-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ------------------------------------------
+   COLUMNA DERECHA (Sección Visual)
+   ------------------------------------------ */
+.login-visual-section {
+    width: 55%;
+    position: relative;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #c7d2fe 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    overflow: hidden;
+}
+
+/* Elementos e Iconos Flotantes */
+.floating-badge {
+    position: absolute;
+    background-color: var(--bg-white);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    animation: float 6s ease-in-out infinite;
+    z-index: 10;
+}
+
+.badge-ai {
+    animation-delay: 2s;
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+.badge-edu {
+    animation-delay: 4s;
+    font-size: 1.2rem;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Contenedor de Imagen Responsivo */
+.illustration-container {
+    width: 100%;
+    max-width: 480px;
+    z-index: 5;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-illustration {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 20px;
+    /* Efecto de sombra suave para integrar la imagen al entorno */
+    filter: drop-shadow(0 20px 30px rgba(99, 102, 241, 0.15));
+}
+
+/* Texto de la Columna Visual */
+.visual-text {
+    text-align: center;
+    max-width: 460px;
+    z-index: 5;
+}
+
+.visual-text h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+}
+
+.visual-text p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   RESPONSIVIDAD (Media Queries)
+   ========================================== */
+@media (max-width: 1024px) {
+    .login-form-section {
+        width: 50%;
+        padding: 2.5rem;
+    }
+    .login-visual-section {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* En tablets y móviles, ocultamos la parte visual y le damos prioridad al Login */
+    .login-container {
+        flex-direction: column;
+    }
+    .login-form-section {
+        width: 100%;
+        height: 100vh;
+        padding: 2rem;
+    }
+    .login-visual-section {
+        display: none; /* Oculta la columna derecha para mejorar usabilidad móvil */
+    }
+}
