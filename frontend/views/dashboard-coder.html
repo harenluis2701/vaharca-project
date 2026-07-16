@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Coder</title>
+    <link rel="stylesheet" href="dashboard-coder.css">
+</head>
+<body>
+<div class="dashboard-container">
+    
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo">
+                <svg viewBox="0 0 24 24" class="logo-svg">
+                    <polygon points="12,2 22,7 22,17 12,22 2,17 2,7" class="hexagon" />
+                    <path d="M12 6v12M9 9h6M8 12h8M9 15h6" class="brain-lines" />
+                </svg>
+            </div>
+            <span class="brand-name">Vaharca <span class="brand-accent">IA</span></span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="#" class="menu-item active">
+                <span class="menu-icon">📚</span>
+                <span>Clase de Hoy</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">💬</span>
+                <span>Inglés Técnico</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🏆</span>
+                <span>Mis Logros</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span>Configuración</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-avatar">V</div>
+            <div class="user-info">
+                <span class="user-name">Valery</span>
+                <span class="user-role">Coder Estudiante</span>
+            </div>
+            <button class="btn-logout" title="Cerrar Sesión">➡️</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <div class="topic-indicator">
+                <span class="badge-topic">Python Básico</span>
+                <h1>Variables y Asignación</h1>
+            </div>
+            <div class="progress-container">
+                <span class="progress-text">Paso 3 de 10</span>
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-fill" style="width: 30%;"></div>
+                </div>
+            </div>
+        </header>
+
+        <section class="lesson-card">
+            <h2>¿Qué es una variable?</h2>
+            <p>Piensa en una variable como una <strong>caja etiquetada</strong> donde guardas un dato (un número, un texto, etc.). En Python, para crear una variable solo debes escribir su nombre, poner el signo igual <code>=</code> y asignarle un valor.</p>
+            
+            <div class="code-example">
+                <div class="code-header">
+                    <span>Python</span>
+                    <span class="code-lang-dot"></span>
+                </div>
+                <pre><code># Creamos una variable llamada 'edad' y le guardamos el número 22
+edad = 22
+
+# Creamos una variable con texto (lleva comillas)
+nombre = "Valery"</code></pre>
+            </div>
+        </section>
+
+        <section class="practice-card">
+            <div class="practice-instructions">
+                <h3>💻 Tu turno de practicar:</h3>
+                <p>Declara una variable llamada <code>mascota</code> y asígnale el texto <code>"perro"</code>. Luego, declara otra variable llamada <code>edad_mascota</code> con el número <code>5</code>.</p>
+            </div>
+            
+            <div class="editor-wrapper">
+                <div class="editor-tabs">
+                    <span class="active-tab">workspace.py</span>
+                </div>
+                <textarea id="coderEditor" placeholder="# Escribe tu código aquí..." spellcheck="false"></textarea>
+            </div>
+
+            <div class="practice-actions">
+                <button class="btn-primary" id="btnEvaluate">Evaluar con IA 🌟</button>
+            </div>
+        </section>
+    </main>
+
+    <aside class="ai-feedback-panel">
+        <div class="feedback-header">
+            <h3>Retroalimentación IA</h3>
+            <span class="ai-status">Activa ⚡</span>
+        </div>
+
+        <div class="feedback-placeholder" id="feedbackPlaceholder">
+            <div class="placeholder-icon">🤖</div>
+            <h4>¿Listo para evaluar?</h4>
+            <p>Escribe tu código en el editor y presiona "Evaluar con IA" para recibir una corrección detallada al instante.</p>
+        </div>
+
+        <div class="feedback-result hidden" id="feedbackResult">
+            <div class="result-status-card success">
+                <span class="status-icon">✅</span>
+                <div>
+                    <h4>¡Excelente Trabajo!</h4>
+                    <p>Aprobado con 5.0/5.0</p>
+                </div>
+            </div>
+
+            <div class="feedback-details">
+                <h5>Análisis paso a paso:</h5>
+                <p class="feedback-text">
+                    Has creado correctamente la variable <code>mascota</code> guardando el texto entre comillas y la variable <code>edad_mascota</code> con un número entero de forma impecable. ¡Estás lista para el siguiente paso!
+                </p>
+            </div>
+        </div>
+    </aside>
+
+</div>
+</body>
+</html>
