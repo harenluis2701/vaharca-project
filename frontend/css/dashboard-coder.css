@@ -306,6 +306,39 @@ progress{
 }
 
 /* ==========================================
+   SUBVIEW PANEL
+   ========================================== */
+
+.subview-panel {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+}
+
+.subview-card {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.subview-card h2 {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+.subview-card p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ==========================================
    RESPONSIVE
    ========================================== */
 

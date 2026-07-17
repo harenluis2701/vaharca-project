@@ -1,156 +1,503 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Leader</title>
-    <link rel="stylesheet" href="dashboard-leader.css">
-</head>
-<body>
-<div class="dashboard-container">
-    
-    <aside class="sidebar">
-        <div class="sidebar-brand">
-            <div class="brand-logo">
-                <svg viewBox="0 0 24 24" class="logo-svg">
-                    <polygon points="12,2 22,7 22,17 12,22 2,17 2,7" class="hexagon" />
-                    <path d="M12 6v12M9 9h6M8 12h8M9 15h6" class="brain-lines" />
-                </svg>
-            </div>
-            <span class="brand-name">Academia<span class="brand-accent">IA</span></span>
+<main class="leader-dashboard">
+
+    <!-- ===========================
+         SIDEBAR
+    ============================ -->
+
+    <aside class="leader-sidebar">
+
+        <div class="leader-logo">
+
+            <h2>🧠 VAHARCA</h2>
+
+            <p>Academia IA</p>
+
         </div>
 
-        <nav class="sidebar-menu">
-            <a href="#" class="menu-item active">
-                <span class="menu-icon">🪄</span>
-                <span>Creador con IA</span>
-            </a>
-            <a href="#" class="menu-item">
-                <span class="menu-icon">📚</span>
-                <span>Gestionar Clases</span>
-            </a>
-            <a href="#" class="menu-item">
-                <span class="menu-icon">👥</span>
-                <span>Mis Coders (Alumnos)</span>
-            </a>
-            <a href="#" class="menu-item">
-                <span class="menu-icon">⚙️</span>
-                <span>Configuración</span>
-            </a>
+        <nav class="leader-menu">
+
+            <button class="leader-item active">
+                🏠 Dashboard
+            </button>
+
+            <button class="leader-item">
+                📚 Lecciones
+            </button>
+
+            <button class="leader-item">
+                👨‍🎓 Coders
+            </button>
+
+            <button class="leader-item">
+                🤖 IA
+            </button>
+
+            <button class="leader-item">
+                📊 Reportes
+            </button>
+
+            <button class="leader-item">
+                ⚙ Configuración
+            </button>
+
         </nav>
 
-        <div class="sidebar-footer">
-            <div class="user-avatar leader-avatar">TL</div>
-            <div class="user-info">
-                <span class="user-name">Prof. Carlos</span>
-                <span class="user-role">Team Leader</span>
-            </div>
-            <button class="btn-logout" title="Cerrar Sesión">➡️</button>
+        <div class="leader-bottom">
+
+            <button class="logout-button"
+                    onclick="cerrarSesion()">
+
+                🚪 Cerrar sesión
+
+            </button>
+
         </div>
+
     </aside>
 
-    <main class="main-content">
-        <header class="content-header">
-            <div class="topic-indicator">
-                <span class="badge-topic badge-leader">Panel de Control</span>
-                <h1>Creador de Contenido Inteligente</h1>
+
+    <!-- ===========================
+         CONTENIDO
+    ============================ -->
+
+    <section class="leader-content">
+
+        <!-- HEADER -->
+
+        <header class="leader-header">
+
+            <div>
+
+                <h1>
+
+                    Bienvenido Team Leader 👋
+
+                </h1>
+
+                <p>
+
+                    Administra los cursos, crea nuevas lecciones y sigue el progreso de tus estudiantes.
+
+                </p>
+
             </div>
+
+            <div class="leader-user">
+
+                <div class="avatar">
+
+                    C
+
+                </div>
+
+            </div>
+
         </header>
 
-        <section class="metrics-grid">
-            <div class="metric-card">
-                <span class="metric-icon">👥</span>
-                <div class="metric-info">
-                    <h3>24</h3>
-                    <p>Coders Activos</p>
-                </div>
+
+        <!-- ===========================
+            ESTADÍSTICAS
+        ============================ -->
+
+        <section class="stats-container">
+
+            <div class="stat-card">
+
+                <h3>👨‍🎓 Estudiantes</h3>
+
+                <h2>52</h2>
+
+                <span>+4 esta semana</span>
+
             </div>
-            <div class="metric-card">
-                <span class="metric-icon">📝</span>
-                <div class="metric-info">
-                    <h3>15</h3>
-                    <p>Lecciones Publicadas</p>
-                </div>
+
+            <div class="stat-card">
+
+                <h3>📚 Lecciones</h3>
+
+                <h2>18</h2>
+
+                <span>3 publicadas hoy</span>
+
             </div>
-            <div class="metric-card">
-                <span class="metric-icon">⚡</span>
-                <div class="metric-info">
-                    <h3>92%</h3>
-                    <p>Tasa de Aprobación</p>
-                </div>
+
+            <div class="stat-card">
+
+                <h3>🤖 IA</h3>
+
+                <h2>35</h2>
+
+                <span>Generaciones</span>
+
             </div>
+
+            <div class="stat-card">
+
+                <h3>📈 Promedio</h3>
+
+                <h2>82%</h2>
+
+                <span>Rendimiento general</span>
+
+            </div>
+
         </section>
 
-        <section class="creator-card">
-            <div class="creator-header">
-                <h2>Generar nueva lección paso a paso</h2>
-                <p>Escribe el tema que deseas enseñar y nuestra IA estructurará la explicación teórica corta, el código de ejemplo y el desafío práctico.</p>
+
+        <!-- ===========================
+             CREAR LECCIÓN
+        ============================ -->
+
+        <section class="lesson-panel">
+
+            <div class="panel-title">
+
+                <h2>
+
+                    ✨ Crear nueva lección
+
+                </h2>
+
+                <p>
+
+                    Completa la información y utiliza IA para generar el contenido automáticamente.
+
+                </p>
+
             </div>
 
-            <div class="prompt-box-wrapper">
-                <input type="text" id="aiPromptInput" placeholder="Ej. Estructuras de control: Ciclo For en Python o Vocabulario técnico de Variables en Inglés..." />
-                <button class="btn-primary btn-generate" id="btnGenerateLesson">
-                    <span>Generar con IA</span> 🌟
-                </button>
-            </div>
+            <form id="lessonForm">
 
-            <div class="lesson-preview-area" id="lessonPreviewArea">
-                <div class="preview-badge">Vista Previa de Edición</div>
-                
-                <div class="form-group">
-                    <label for="previewTitle">Título de la Clase</label>
-                    <input type="text" id="previewTitle" value="Introducción a los Ciclos For" />
+                <div class="input-group">
+
+                    <label>
+
+                        Título
+
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Ej: Ciclo For en Python">
+
                 </div>
 
-                <div class="form-group">
-                    <label for="previewExplanation">Explicación Paso a Paso (Teoría Máx. 3 párrafos)</label>
-                    <textarea id="previewExplanation" rows="4">Un ciclo 'for' se utiliza en Python para repetir un bloque de código un número conocido de veces. Es ideal para recorrer listas, tuplas o rangos numéricos de manera eficiente y limpia.</textarea>
+                <div class="double-input">
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Categoría
+
+                        </label>
+
+                        <select>
+
+                            <option>Python</option>
+
+                            <option>Inglés</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+
+                            Nivel
+
+                        </label>
+
+                        <select>
+
+                            <option>Básico</option>
+
+                            <option>Intermedio</option>
+
+                            <option>Avanzado</option>
+
+                        </select>
+
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="previewChallenge">Ejercicio Práctico de Escritura</label>
-                    <textarea id="previewChallenge" rows="3" class="code-font"># Consigna: Crea un ciclo for que imprima los números del 1 al 5 usando range().</textarea>
+                <div class="input-group">
+
+                    <label>
+
+                        Tema
+
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Ej: Condicionales">
+
                 </div>
 
-                <div class="preview-actions">
-                    <button class="btn-secondary">Descartar</button>
-                    <button class="btn-primary" id="btnPublishLesson">Aprobar y Publicar 🚀</button>
+                <div class="input-group">
+
+                    <label>
+
+                        Descripción
+
+                    </label>
+
+                    <textarea
+                        rows="6"
+                        placeholder="Describe la lección que deseas crear..."></textarea>
+
                 </div>
-            </div>
+
+                <!-- ===========================
+                     BOTONES IA
+                ============================ -->
+
+                <div class="buttons-panel">
+
+                    <button
+                        type="button"
+                        class="btn-ai">
+
+                        🤖 Generar explicación
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-ai">
+
+                        ❓ Generar preguntas
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-ai">
+
+                        ✍ Generar ejercicio
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-publish">
+
+                        🚀 Publicar lección
+
+                    </button>
+
+                </div>
+
+            </form>
+
         </section>
-    </main>
 
-    <aside class="ai-feedback-panel">
-        <div class="feedback-header">
-            <h3>Actividad Reciente</h3>
-            <span class="ai-status badge-leader">Monitoreo</span>
-        </div>
 
-        <div class="activity-list">
-            <div class="activity-item">
-                <div class="activity-avatar">V</div>
-                <div class="activity-details">
-                    <p><strong>Valery (Coder)</strong> aprobó <em>Variables y Asignación</em></p>
-                    <span class="activity-time">Hace 2 min</span>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-avatar">H</div>
-                <div class="activity-details">
-                    <p><strong>Haren (Coder)</strong> envió un ejercicio para revisión</p>
-                    <span class="activity-time">Hace 15 min</span>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-avatar">C</div>
-                <div class="activity-details">
-                    <p><strong>Carlos (Coder)</strong> inició sesión en la plataforma</p>
-                    <span class="activity-time">Hace 1 hora</span>
-                </div>
-            </div>
-        </div>
-    </aside>
+        <!-- ===========================
+             TABLA ESTUDIANTES
+        ============================ -->
 
-</div>
-</body>
-</html>
+        <section class="students-panel">
+
+            <div class="panel-title">
+
+                <h2>
+
+                    👨‍🎓 Últimos estudiantes
+
+                </h2>
+
+                <p>
+
+                    Visualiza el progreso de los coders.
+
+                </p>
+
+            </div>
+
+            <table class="students-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Nombre</th>
+
+                        <th>Curso</th>
+
+                        <th>Nivel</th>
+
+                        <th>Progreso</th>
+
+                        <th>Estado</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>Carlos</td>
+
+                        <td>Python</td>
+
+                        <td>Básico</td>
+
+                        <td>35%</td>
+
+                        <td>
+
+                            <span class="status active">
+
+                                Activo
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Valerie</td>
+
+                        <td>Inglés</td>
+
+                        <td>A1</td>
+
+                        <td>68%</td>
+
+                        <td>
+
+                            <span class="status active">
+
+                                Activo
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Haren</td>
+
+                        <td>Python</td>
+
+                        <td>Intermedio</td>
+
+                        <td>91%</td>
+
+                        <td>
+
+                            <span class="status inactive">
+
+                                Inactivo
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ===========================
+             ACTIVIDAD RECIENTE
+        ============================ -->
+
+        <section class="activity-panel">
+
+            <div class="panel-title">
+
+                <h2>
+
+                    📅 Actividad reciente
+
+                </h2>
+
+            </div>
+
+            <div class="activity-card">
+
+                <h4>
+
+                    📚 Nueva lección publicada
+
+                </h4>
+
+                <p>
+
+                    "Variables en Python"
+
+                </p>
+
+                <small>
+
+                    Hace 2 horas
+
+                </small>
+
+            </div>
+
+            <div class="activity-card">
+
+                <h4>
+
+                    🤖 Contenido generado con IA
+
+                </h4>
+
+                <p>
+
+                    Se generó una explicación sobre ciclos FOR.
+
+                </p>
+
+                <small>
+
+                    Hace 35 minutos
+
+                </small>
+
+            </div>
+
+            <div class="activity-card">
+
+                <h4>
+
+                    👨‍🎓 Nuevo estudiante
+
+                </h4>
+
+                <p>
+
+                    Andrés se registró en la plataforma.
+
+                </p>
+
+                <small>
+
+                    Hace 15 minutos
+
+                </small>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>

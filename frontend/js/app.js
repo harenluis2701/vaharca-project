@@ -75,6 +75,10 @@ function inicializarVista(nombreVista) {
             iniciarDashboardLeader();
             break;
 
+        case "dashboard-admin":
+            iniciarDashboardAdmin();
+            break;
+
         default:
             console.log(`Vista "${nombreVista}" inicializada.`);
             break;
@@ -90,6 +94,80 @@ function iniciarDashboardCoder() {
 
     console.log("Dashboard Coder iniciado");
 
+    const botones = document.querySelectorAll('.card-action');
+    botones.forEach(boton => {
+        boton.addEventListener('click', () => {
+            const accion = boton.dataset.action;
+            mostrarSubview(accion);
+        });
+    });
+
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            menuItems.forEach(btn => btn.classList.remove('active'));
+            item.classList.add('active');
+            mostrarSubview(item.dataset.subview || 'home');
+        });
+    });
+
+    const backButton = document.getElementById('coder-subview-back');
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            mostrarSubview('home');
+            document.querySelector('.menu-item[data-subview="home"]').classList.add('active');
+        });
+    }
+}
+
+function mostrarSubview(subview) {
+    const homePanel = document.getElementById('coder-home');
+    const subviewPanel = document.getElementById('coder-subview');
+    const title = document.getElementById('coder-subview-title');
+    const text = document.getElementById('coder-subview-text');
+
+    if (!homePanel || !subviewPanel || !title || !text) {
+        return;
+    }
+
+    const contenido = {
+        home: {
+            titulo: 'Bienvenido de nuevo',
+            texto: 'Selecciona una opción del menú o de las tarjetas para ver más detalles.',
+        },
+        python: {
+            titulo: 'Curso de Python',
+            texto: 'Accede a lecciones, ejercicios y recursos para mejorar tus habilidades en Python.',
+        },
+        ingles: {
+            titulo: 'Curso de Inglés',
+            texto: 'Practica vocabulario técnico, gramática y conversaciones de programación.',
+        },
+        'tutor-ia': {
+            titulo: 'Tutor IA',
+            texto: 'Haz preguntas y recibe respuestas inteligentes de nuestro asistente IA.',
+        },
+        progreso: {
+            titulo: 'Mi progreso',
+            texto: 'Revisa tu avance en los cursos y descubre qué sigue en tu ruta de aprendizaje.',
+        },
+        perfil: {
+            titulo: 'Mi perfil',
+            texto: 'Actualiza tus datos, tu foto y tus preferencias de aprendizaje.',
+        },
+    };
+
+    const seleccion = contenido[subview] || contenido.home;
+    title.textContent = seleccion.titulo;
+    text.textContent = seleccion.texto;
+
+    if (subview === 'home') {
+        homePanel.classList.remove('hidden');
+        subviewPanel.classList.add('hidden');
+    } else {
+        homePanel.classList.add('hidden');
+        subviewPanel.classList.remove('hidden');
+    }
 }
 
 /**
@@ -99,6 +177,75 @@ function iniciarDashboardLeader() {
 
     console.log("Dashboard Team Leader iniciado");
 
+    const menuItems = document.querySelectorAll('.leader-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            menuItems.forEach(btn => btn.classList.remove('active'));
+            item.classList.add('active');
+            alert(`Navegando a: ${item.textContent.trim()}`);
+        });
+    });
+
+    const aiButtons = document.querySelectorAll('.btn-ai');
+    aiButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const texto = button.textContent.trim();
+            alert(`${texto} en construcción.`);
+        });
+    });
+
+    const publishButton = document.querySelector('.btn-publish');
+    if (publishButton) {
+        publishButton.addEventListener('click', () => {
+            alert('Publicación de lección en construcción.');
+        });
+    }
+
+}
+
+/**
+ * Dashboard del Administrador
+ */
+function iniciarDashboardAdmin() {
+
+    console.log("Dashboard Administrador iniciado");
+
+    const adminItems = document.querySelectorAll('.admin-item');
+    adminItems.forEach(item => {
+        item.addEventListener('click', () => {
+            adminItems.forEach(btn => btn.classList.remove('active'));
+            item.classList.add('active');
+            alert(`Navegando a: ${item.textContent.trim()}`);
+        });
+    });
+
+    const adminActions = document.querySelectorAll('.admin-action');
+    adminActions.forEach(button => {
+        button.addEventListener('click', () => {
+            const acción = button.dataset.action || button.textContent.trim();
+            alert(`Acción admin: ${acción}`);
+        });
+    });
+
+}
+
+function obtenerRutaInicial() {
+    const usuario = Storage.obtenerUsuario();
+
+    if (!usuario) {
+        return "login";
+    }
+
+    switch (usuario.rol) {
+        case "leader":
+            return "dashboard-leader";
+        case "coder":
+            return "dashboard-coder";
+        case "admin":
+            return "dashboard-admin";
+        default:
+            return "login";
+    }
 }
 
 /**
@@ -108,6 +255,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     console.log("VAHARCA iniciada");
 
-    cargarVista("login");
+    const vistaInicial = obtenerRutaInicial();
+    cargarVista(vistaInicial);
 
 });

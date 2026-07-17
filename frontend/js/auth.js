@@ -14,6 +14,30 @@ function iniciarLogin() {
 
     formulario.addEventListener("submit", iniciarSesion);
 
+    const googleBtn = document.querySelector('.btn-google');
+    if (googleBtn) {
+        googleBtn.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            alert('Inicio con Google no disponible todavía. Usa las credenciales de prueba.');
+        });
+    }
+
+    const forgotLink = document.querySelector('.forgot-link');
+    if (forgotLink) {
+        forgotLink.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            alert('Recuperación de contraseña en construcción.');
+        });
+    }
+
+    const registerLink = document.querySelector('.register-link');
+    if (registerLink) {
+        registerLink.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            alert('Registro en línea no está disponible aún.');
+        });
+    }
+
 }
 
 async function iniciarSesion(evento) {
@@ -99,7 +123,13 @@ async function iniciarSesion(evento) {
 
         case "admin":
 
-            alert("Dashboard Administrador en construcción.");
+            cargarVista("dashboard-admin");
+
+            break;
+
+        default:
+
+            alert("Dashboard en construcción para este rol.");
 
             break;
 

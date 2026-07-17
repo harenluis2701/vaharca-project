@@ -324,12 +324,70 @@ body {
 /* Contenedor de Imagen Responsivo */
 .illustration-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
     z-index: 5;
     margin-bottom: 2rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1.75rem;
+}
+
+.graphic-card {
+    width: 100%;
+    max-width: 520px;
+}
+
+.illustration-card {
+    width: 100%;
+    padding: 2rem;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    text-align: center;
+    backdrop-filter: blur(12px);
+}
+
+.main-illustration {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 24px;
+    filter: drop-shadow(0 20px 35px rgba(99, 102, 241, 0.18));
+}
+
+.graphic-copy {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.graphic-copy h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.graphic-copy p {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.mortarboard-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.illustration-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.illustration-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
 }
 
 .main-illustration {

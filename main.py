@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 import traceback
@@ -9,7 +10,7 @@ from dotenv import load_dotenv
 from database.connection import get_db
 import database.models as models
 import schemas
-from security import get_password_hash
+from security import get_password_hash, verify_password
 from gemini_service import generar_leccion_ia
 
 # Cargar variables de entorno (si usas el archivo .env)
@@ -17,6 +18,20 @@ load_dotenv()
 
 # Inicializar la aplicación FastAPI
 app = FastAPI(title="API de Vaharca", version="1.0.0")
+
+# Configurar CORS para el frontend local
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "http://127.0.0.1:5501",
+        "http://localhost:5501",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # ==========================================
@@ -72,6 +87,30 @@ async def registrar_usuario(usuario: schemas.UsuarioCrear, db: Session = Depends
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=f"Error al guardar en BD: {str(e)}")
+
+
+@app.post("/login")
+async def iniciar_sesion(datos: schemas.UsuarioLogin, db: Session = Depends(get_db)):
+    """
+    Authentica al usuario y devuelve token de sesión.
+    """
+    usuario = db.query(models.Usuario).filter(models.Usuario.email == datos.email).first()
+    if not usuario:
+        raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos.")
+
+    if not verify_password(datos.password, usuario.password_hash):
+        raise HTTPException(status_code=401, detail="Correo o contraseña incorrectos.")
+
+    # En este demo devolvemos token fijo y datos de usuario.
+    return {
+        "token": "TOKEN_DE_PRUEBA",
+        "user": {
+            "id": usuario.id,
+            "nombre": usuario.nombre,
+            "email": usuario.email,
+            "rol": usuario.rol,
+        }
+    }
 
 
 # ==========================================

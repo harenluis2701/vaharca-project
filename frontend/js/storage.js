@@ -19,9 +19,17 @@ const Storage = {
 
         const usuario = localStorage.getItem("usuario");
 
-        return usuario
-            ? JSON.parse(usuario)
-            : null;
+        if (!usuario) {
+            return null;
+        }
+
+        try {
+            return JSON.parse(usuario);
+        } catch (error) {
+            console.error("Error parseando usuario en localStorage:", error);
+            this.eliminarUsuario();
+            return null;
+        }
 
     },
 
