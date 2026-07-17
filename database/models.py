@@ -13,6 +13,7 @@ class Usuario(Base):
     email = Column(String(150), unique=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
     rol = Column(String(20), nullable=False) 
+    edad = Column(Integer, default=0)
     gemini_api_key = Column(String(255), nullable=True)
     fecha_registro = Column(DateTime, default=datetime.utcnow)
 
@@ -53,6 +54,8 @@ class ProgresoCoder(Base):
     leccion_id = Column(Integer, ForeignKey("lecciones.id", ondelete="CASCADE"))
     estado = Column(String(20), default="Pendiente")
     feedback_ia = Column(String)
+    respuesta_estudiante = Column(String, nullable=True)
+    calificacion_ia = Column(Integer, nullable=True)
     fecha_actualizacion = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     usuario = relationship("Usuario", back_populates="progresos")

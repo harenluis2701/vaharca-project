@@ -5,6 +5,8 @@ CREATE TABLE usuarios (
     email VARCHAR(150) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     rol VARCHAR(20) CHECK (rol IN ('TEAM_LEADER', 'CODER')) NOT NULL,
+    edad INT DEFAULT 0,
+    gemini_api_key VARCHAR(255),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -32,7 +34,9 @@ CREATE TABLE progreso_coder (
     id SERIAL PRIMARY KEY,
     usuario_id INT REFERENCES usuarios(id) ON DELETE CASCADE,
     leccion_id INT REFERENCES lecciones(id) ON DELETE CASCADE,
-    estado VARCHAR(20) CHECK (estado IN ('Pendiente', 'Completada')) DEFAULT 'Pendiente',
+    estado VARCHAR(20) CHECK (estado IN ('Pendiente', 'Completada', 'Aprobado', 'Reprobado')) DEFAULT 'Pendiente',
+    respuesta_estudiante TEXT,
+    calificacion_ia INT,
     feedback_ia TEXT, 
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(usuario_id, leccion_id)
