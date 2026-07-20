@@ -1,6 +1,5 @@
 import { AIService } from '../services/aiService.js';
 import { AuthUtils } from '../utils/auth.js';
-import { ROUTES } from '../config/constants.js';
 
 export const TutorIA = () => {
   const container = document.createElement('div');

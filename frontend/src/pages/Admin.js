@@ -1,5 +1,6 @@
 import { AuthUtils } from '../utils/auth.js';
 import { AIService } from '../services/aiService.js';
+import { fetchApi } from '../services/api.js';
 
 export const Admin = () => {
   const user = AuthUtils.getUser();
@@ -214,18 +215,10 @@ export const Admin = () => {
         apiKeyBtn.disabled = true;
         apiKeyBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i>...';
         
-        const token = AuthUtils.getToken();
-        const res = await fetch('http://localhost:8000/usuarios/me/apikey', {
+        const data = await fetchApi('/usuarios/me/apikey', {
           method: 'PUT',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` 
-          },
           body: JSON.stringify({ api_key: apiKey })
         });
-        
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.detail || 'Error al guardar');
         
         apiKeyResultDiv.style.display = 'block';
         apiKeyResultDiv.style.color = 'var(--color-success)';
@@ -304,14 +297,10 @@ export const Admin = () => {
       regBtn.disabled = true;
       regBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Creando...';
       
-      const res = await fetch('http://localhost:8000/registro', {
+      const data = await fetchApi('/registro', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || 'Error al registrar usuario');
       
       regResultDiv.style.display = 'block';
       regResultDiv.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
@@ -334,18 +323,12 @@ export const Admin = () => {
   // --- Logic for Actual Stats ---
   const loadStats = async () => {
     try {
-      const token = AuthUtils.getToken();
-      const res = await fetch('http://localhost:8000/admin/stats', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const stats = await res.json();
-        const statEstudiantes = container.querySelector('#stat-estudiantes');
-        if (statEstudiantes) {
-          statEstudiantes.innerText = stats.estudiantes_activos;
-          container.querySelector('#stat-lecciones').innerText = stats.lecciones_totales;
-          container.querySelector('#stat-aprobacion').innerText = stats.tasa_aprobacion + '%';
-        }
+      const stats = await fetchApi('/admin/stats');
+      const statEstudiantes = container.querySelector('#stat-estudiantes');
+      if (statEstudiantes) {
+        statEstudiantes.innerText = stats.estudiantes_activos;
+        container.querySelector('#stat-lecciones').innerText = stats.lecciones_totales;
+        container.querySelector('#stat-aprobacion').innerText = stats.tasa_aprobacion + '%';
       }
     } catch (error) {
       console.error('Error fetching admin stats:', error);

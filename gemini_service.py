@@ -15,7 +15,7 @@ def generar_leccion_ia(api_key: str, tema: str, nivel: str, tipo: str, idioma: s
         
 
        # IMPORTANTE: Usar el modelo actualizado
-        MODELO = 'gemini-flash-latest'
+        MODELO = 'gemini-3.1-flash-lite'
         print(f"🔍 Usando modelo: {MODELO}")
         
         model = genai.GenerativeModel(MODELO)
@@ -89,7 +89,7 @@ def evaluar_respuesta_ia(api_key: str, respuesta_estudiante: str, contexto_lecci
     """
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-flash-latest')
+        model = genai.GenerativeModel('gemini-3.1-flash-lite')
         
         prompt = f"""
         Eres un evaluador de la plataforma Vaharca.
@@ -122,10 +122,16 @@ def evaluar_respuesta_ia(api_key: str, respuesta_estudiante: str, contexto_lecci
         return datos
     except Exception as e:
         print(f"❌ Error al evaluar: {e}")
+        error_msg = str(e)
+        if "429" in error_msg or "quota" in error_msg.lower():
+            friendly_msg = "El servidor de IA está saturado o has superado el límite gratuito. Para evaluar sin interrupciones, por favor conecta tu propia API Key en la sección de 'Mi Perfil / Admin'."
+        else:
+            friendly_msg = f"Error del sistema: {error_msg}"
+            
         return {
             "error": "No se pudo evaluar la respuesta.",
             "calificacion": 0,
-            "feedback": f"Error del sistema: {str(e)}"
+            "feedback": friendly_msg
         }
 
 def chat_tutor_ia(api_key: str, mensajes: list, progreso_estudiante: str):
@@ -134,7 +140,7 @@ def chat_tutor_ia(api_key: str, mensajes: list, progreso_estudiante: str):
     """
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-flash-latest')
+        model = genai.GenerativeModel('gemini-3.1-flash-lite')
         
         system_instruction = f"""
         Eres el Tutor IA de la plataforma Vaharca.

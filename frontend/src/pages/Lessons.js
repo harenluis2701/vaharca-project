@@ -1,5 +1,6 @@
 import { CourseService } from '../services/courseService.js';
 import { AIService } from '../services/aiService.js';
+import { ROUTES } from '../config/constants.js';
 
 export const Lessons = async (queryParams) => {
   const container = document.createElement('div');
@@ -141,23 +142,42 @@ export const Lessons = async (queryParams) => {
           });
 
           resultDiv.style.display = 'block';
-          if (res.estado === 'Aprobado') {
-            resultDiv.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
-            resultDiv.style.border = '1px solid var(--color-success)';
-            resultDiv.style.color = 'var(--color-success-dark, #065f46)';
+          if (res.resultado && res.resultado.error) {
+            // Error del sistema o de la API
+            resultDiv.style.backgroundColor = 'rgba(245, 158, 11, 0.1)';
+            resultDiv.style.border = '1px solid #f59e0b';
+            resultDiv.style.color = '#92400e';
+            
+            resultDiv.innerHTML = `
+              <strong><i class="ph ph-warning-circle"></i> Error de Conexión con IA</strong><br>
+              <p style="margin-top: 0.5rem; margin-bottom: var(--spacing-4);">${res.resultado.feedback}</p>
+              <button class="btn btn-secondary btn-block" onclick="window.location.hash='${ROUTES.COURSES}'">
+                <i class="ph ph-arrow-left"></i> Volver a mis Cursos
+              </button>
+            `;
           } else {
-            resultDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-            resultDiv.style.border = '1px solid var(--color-danger)';
-            resultDiv.style.color = 'var(--color-danger-dark, #991b1b)';
-          }
+            // Evaluación exitosa (puede ser aprobada o reprobada, pero la API funcionó)
+            if (res.estado === 'Aprobado') {
+              resultDiv.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+              resultDiv.style.border = '1px solid var(--color-success)';
+              resultDiv.style.color = 'var(--color-success-dark, #065f46)';
+            } else {
+              resultDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+              resultDiv.style.border = '1px solid var(--color-danger)';
+              resultDiv.style.color = 'var(--color-danger-dark, #991b1b)';
+            }
 
-          resultDiv.innerHTML = `
-            <strong>Estado: ${res.estado} (Nota: ${res.resultado.calificacion}/100)</strong><br>
-            <p style="margin-top: 0.5rem; margin-bottom: var(--spacing-4);">${res.resultado.feedback}</p>
-            <button class="btn btn-secondary btn-block" onclick="window.location.hash='${ROUTES.COURSES}'">
-              <i class="ph ph-arrow-left"></i> Volver a mis Cursos
-            </button>
-          `;
+            resultDiv.innerHTML = `
+              <strong>Estado: ${res.estado} (Nota: ${res.resultado.calificacion}/100)</strong><br>
+              <p style="margin-top: 0.5rem; margin-bottom: var(--spacing-4);">
+                <strong>💡 Explicación del Tutor IA:</strong><br>
+                ${res.resultado.feedback}
+              </p>
+              <button class="btn btn-secondary btn-block" onclick="window.location.hash='${ROUTES.COURSES}'">
+                <i class="ph ph-arrow-left"></i> Volver a mis Cursos
+              </button>
+            `;
+          }
 
         } catch (error) {
           resultDiv.style.display = 'block';
